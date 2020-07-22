@@ -11,11 +11,11 @@ void display_queue(struct queue *q) {
 	}
 
 	while (i != q->last ) {
-		printf("Queue: %ld; value: %d\n", cnt, q->data[i]);
+		printf("Queue: %ld; position: %ld; value: %d\n", cnt, i, q->data[i]);
 		i = (i+1) % QSIZE;
 		cnt++;
 	}
-	printf("Queue: %ld; value: %d\n", cnt, q->data[i]);
+	printf("Queue: %ld; position: %ld; value: %d\n", cnt, i, q->data[i]);
 }
 
 struct queue *queue_insert(struct queue *q, int value, short *op_status) {
@@ -30,11 +30,8 @@ struct queue *queue_insert(struct queue *q, int value, short *op_status) {
 		q->last = 0;
 		q->data[q->last] = value;
 
-	} else if (q->last == QSIZE - 1 && q->first > 0 ) {
-		q->last = 0;
-	}
-	else {
-		q->last = q->last + 1;
+	} else {
+		q->last = (q->last + 1) % QSIZE;
 	}
 	q->data[q->last] = value;
 	return q;
