@@ -14,8 +14,6 @@ const char *menu[] = {
 		NULL
 };
 
-struct queue cqueue;
-
 int main(void) {
 	op_status = 0;
 
