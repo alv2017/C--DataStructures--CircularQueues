@@ -20,7 +20,7 @@ void display_queue(struct queue *q) {
 
 struct queue *queue_insert(struct queue *q, int value, short *op_status) {
 	*op_status = 0;
-	if (q->first==0 && q->last==QSIZE-1) {
+	if ( (q->last + 1) % QSIZE == q->first ) {
 		printf("The queue is full.\n");
 		return q;
 	}
